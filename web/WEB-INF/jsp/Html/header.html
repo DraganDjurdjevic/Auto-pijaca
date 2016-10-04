@@ -1,0 +1,92 @@
+<div id="header">
+
+    <div id="logo">
+        <div id="slika"></div>
+    </div>
+
+    <div id="slogan">
+        <div id = "tekst">
+            <p></p>
+        </div>
+        
+        <div id="dugmad">
+            <div id="button1" onclick="test1('1');"></div>
+
+            <div id="button2" onclick="test1('2');"></div>
+
+            <div id="button3" onclick="test1('3');"></div>
+        </div>
+    </div>
+
+</div><!-- end #header -->
+
+
+<div id="nav">
+
+    <ul>
+        <li><a href="<%=request.getContextPath() %>/">Home page</a></li>
+        <li><a href="<%=request.getContextPath() %>/registration">Registration</a></li>
+        <li id = "login"><a href="<%=request.getContextPath() %>/login">Login</a></li>
+        <li><a href="<%=request.getContextPath() %>/galery">Galery</a></li>
+        <li id = "profil"><a href="<%=request.getContextPath() %>/pageuser">My profil</a></li>
+    </ul>
+
+    <div class="social">
+        <a href="#"><i class="fa fa-facebook-square"></i></a>
+        <a href="#"><i class="fa fa-twitter-square"></i></a>
+        <a href="#"><i class="fa fa-linkedin-square"></i></a>
+    </div>
+
+
+</div><!-- end #nav -->
+<script>
+var data1 = '{"frame1": [{"text":"<p>Dobro dosli u aplikaciju Auto pijaca</p>", "image":"${slika1}"},'+
+'{"text":"<p>Najveci izbor automobila na jednom mestu</p>", "image":"${slika2}"},'+
+'{"text":"<p>Najpovoljnije cene uz odlican kvalitet</p>", "image":"${slika3}"}]}';
+
+        var json1 = JSON.parse(data1);
+
+
+
+
+function oznaciButton1(id){
+    document.getElementById("button1").style.background = "#fff";
+    document.getElementById("button2").style.background = "#fff";
+    document.getElementById("button3").style.background = "#fff";
+    document.getElementById(id).style.background = "#A8252F";
+}
+
+function test1(id){
+    switch (parseInt(id)) {
+        case 1:
+        document.getElementById("slika").style.background = "url("+json1.frame1[0].image+")";
+        document.getElementById("tekst").innerHTML = json1.frame1[0].text;
+        oznaciButton1('button1');
+            break;
+        case 2:
+        document.getElementById("slika").style.background = "url("+json1.frame1[1].image+")";
+        document.getElementById("tekst").innerHTML = json1.frame1[1].text;
+        oznaciButton1('button2');
+            break;
+        case 3:
+        document.getElementById("slika").style.background = "url("+json1.frame1[2].image+")";
+        document.getElementById("tekst").innerHTML = json1.frame1[2].text;
+        oznaciButton1('button3');
+            break;
+
+    }
+}
+function pomeraj1(){
+test1(k);
+if(k<3){
+k++;}else{k=1;
+}
+}
+document.getElementById("slika").style.background = "url("+json1.frame1[0].image+")";
+ document.getElementById("tekst").innerHTML = json1.frame1[0].text;
+ oznaciButton1('button1');
+var k=1;
+var intervalID1 = setInterval(pomeraj1, 5000);
+
+</script>
+
